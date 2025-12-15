@@ -1,0 +1,9 @@
+INSERT INTO users (user_id, idempotency_key, user_name, email, password, date_of_birth, date_of_leaving, postal_code, profile_image_object_name, profile_image_bucket, created_by, created_date, updated_by, updated_date) VALUES (1, 'IDEMP-001', 'john.doe', 'john@example.com', 'pass123', '1998-02-15', '2024-12-31', 56001, NULL, 'user-images', 'system', CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP);
+
+INSERT INTO users (user_id, idempotency_key, user_name, email, password, date_of_birth, date_of_leaving, postal_code, profile_image_object_name, profile_image_bucket, created_by, created_date, updated_by, updated_date) VALUES (2, 'IDEMP-002', 'alice.wonder', 'alice@example.com', 'pass123', '1990-07-22', '2024-12-31', 56002, NULL, 'user-images', 'system', CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP);
+
+INSERT INTO users (user_id, idempotency_key, user_name, email, password, date_of_birth, date_of_leaving, postal_code, profile_image_object_name, profile_image_bucket, created_by, created_date, updated_by, updated_date) VALUES (3, 'IDEMP-003', 'robert.smith', 'robert@example.com', 'pass123', '1985-01-11', '2024-12-31', 56001, NULL, 'user-images', 'system', CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP);
+
+INSERT INTO users (user_id, idempotency_key, user_name, email, password, date_of_birth, date_of_leaving, postal_code, profile_image_object_name, profile_image_bucket, created_by, created_date, updated_by, updated_date) VALUES (4, 'IDEMP-004', 'john.miller', 'jm@example.com', 'pass123', '1996-09-05', '2024-12-31', 56003, NULL, 'user-images', 'system', CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP);
+
+ALTER TABLE USERS ALTER COLUMN user_id RESTART WITH 5;

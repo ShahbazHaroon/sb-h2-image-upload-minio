@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.6</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.ubaidsample.h2</groupId>
+	<artifactId>sb-h2-image-upload-minio</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>sb-h2-image-upload-minio</name>
+	<description>Spring Boot project using H2 database and Swagger to upload image using MinIO</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Muhammad Ubaid Ur Raheem AKA Shahbaz Haroon</name>
+			<id>shahbaz.haroon1</id>
+			<email>shahbazhrn@gmail.com</email>
+			<roles>
+				<role>Technical Architect / Sr. Java Developer</role>
+			</roles>
+			<url>https://github.com/ShahbazHaroon</url>
+		</developer>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<openapi.webmvc-ui.version>2.7.0</openapi.webmvc-ui.version>
+		<modelmapper.version>3.2.4</modelmapper.version>
+		<modelmapper.spring.version>3.2.4</modelmapper.spring.version>
+		<lombok.version>1.18.40</lombok.version>
+	</properties>
+	<dependencies>
+		<!-- Swagger -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${openapi.webmvc-ui.version}</version>
+		</dependency>
+		<!-- Spring Boot Starter Web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- Spring Boot Starter Data JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- Java Bean validation with Hibernate Validator -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<!-- Core ModelMapper (contains ModelMapper class) -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>${modelmapper.version}</version>
+		</dependency>
+		<!-- Optional: Spring Boot integration (for advanced Spring DI support) -->
+		<dependency>
+			<groupId>org.modelmapper.extensions</groupId>
+			<artifactId>modelmapper-spring</artifactId>
+			<version>${modelmapper.spring.version}</version>
+		</dependency>
+		<!-- H2 Database, just change the scope to test for testing purpose -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<optional>true</optional>
+			<scope>provided</scope>
+		</dependency>
+		<!-- MinIO Java Client -->
+		<dependency>
+			<groupId>io.minio</groupId>
+			<artifactId>minio</artifactId>
+			<version>8.6.0</version>
+		</dependency>
+		<!-- OkHttp needed for MinIO -->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.12.0</version>
+		</dependency>
+
+		<!-- Spring Boot Starter Test primary dependency that contains the majority of elements required for tests -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<source>17</source>
+					<target>17</target>
+					<annotationProcessorPaths>
+						<!-- Lombok -->
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<profiles>
+						<profile>
+							<id>dev</id>
+							<properties>
+								<environment>dev</environment>
+							</properties>
+							<build>
+								<finalName>${project.artifactId}-dev</finalName>
+							</build>
+						</profile>
+						<profile>
+							<id>qa</id>
+							<properties>
+								<environment>qa</environment>
+							</properties>
+							<build>
+								<finalName>${project.artifactId}-qa</finalName>
+							</build>
+						</profile>
+						<profile>
+							<id>uat</id>
+							<properties>
+								<environment>uat</environment>
+							</properties>
+							<build>
+								<finalName>${project.artifactId}-uat</finalName>
+							</build>
+						</profile>
+						<profile>
+							<id>prod</id>
+							<properties>
+								<environment>prod</environment>
+							</properties>
+							<build>
+								<finalName>${project.artifactId}-prod</finalName>
+							</build>
+						</profile>
+					</profiles>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>${project.artifactId}</finalName>
+	</build>
+
+</project>

@@ -1,0 +1,136 @@
+HELP.md
+
+# ----------------------------
+# OS / System files
+# ----------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ----------------------------
+# Logs and temporary files
+# ----------------------------
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ----------------------------
+# Archives / Packages
+# ----------------------------
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+*.gz
+
+# ----------------------------
+# Compiled / Generated files
+# ----------------------------
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.a
+*.out
+*.obj
+*.pyc
+*.pyo
+__pycache__/
+
+# ----------------------------
+# Build and dependency folders
+# ----------------------------
+build/
+dist/
+out/
+target/
+.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.jar
+#!**/src/main/**/target/
+#!**/src/test/**/target/
+.mvn/timing.properties
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+bin/
+lib/
+node_modules/
+vendor/
+
+# ----------------------------
+# IDE and Editor settings
+# ----------------------------
+# IntelliJ / Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse / STS
+.project
+.classpath
+.factorypath
+.settings/
+.apt_generated/
+.sts4-cache
+.springBeans
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Visual Studio Code
+.vscode/
+
+# Other editors
+*.sublime-workspace
+*.sublime-project
+
+# ----------------------------
+# Virtual Environments / Local configs
+# ----------------------------
+.env
+.env/
+.env.local
+venv/
+.venv/
+*.pid
+
+# ----------------------------
+# Docker
+# ----------------------------
+docker-compose.override.yml
+
+# ----------------------------
+# JVM crash logs
+# ----------------------------
+hs_err_pid*
+replay_pid*
+
+# ----------------------------
+# Mobile Tools for Java (J2ME)
+# ----------------------------
+.mtj.tmp/
+
+
+# ----------------------------
+# BlueJ files
+# ----------------------------
+*.ctxt

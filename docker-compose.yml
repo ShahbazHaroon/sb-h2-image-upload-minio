@@ -1,0 +1,35 @@
+services:
+  sb-h2:
+    build:
+      context: . # Project root as context
+      dockerfile: Dockerfile
+    image: sb-h2-image-upload-minio
+    container_name: sb-h2-image-upload-minio-container
+    ports:
+      - "8080:8080"  # Expose Spring Boot API externally
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - MINIO_URL=http://minio:9000
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+      - MINIO_BUCKET=user-images
+    depends_on:
+      - minio
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001" --address ":9000"
+    ports:
+      - "9000:9000" # S3 API (HTTP)
+      - "9001:9001" # Web Console (HTTP)
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+      MINIO_SERVER_URL: http://localhost:9000
+      MINIO_BROWSER_REDIRECT_URL: http://localhost:9001
+    volumes:
+      - minio-data:/data
+
+volumes:
+    minio-data:
