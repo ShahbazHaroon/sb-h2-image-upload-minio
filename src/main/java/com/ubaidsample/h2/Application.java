@@ -11,8 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.event.EventListener;
 
 @Slf4j
 @SpringBootApplication
@@ -28,5 +30,10 @@ public class Application {
 				log.info("Beans Loaded at runtime: {}", bean);
 			}
 		};
+	}
+
+	@EventListener(ApplicationReadyEvent.class)
+	public void onApplicationReady() {
+		log.info("Application is up and running");
 	}
 }
